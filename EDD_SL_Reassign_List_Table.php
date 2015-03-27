@@ -71,6 +71,13 @@ class EDD_SL_Reassign_Table extends WP_List_Table {
 				<form id="reassign-license">
 					<select class="license-price-id-select" data-download="<?php echo $download_id; ?>" data-id="<?php echo $item['ID']; ?>" name="new-id">
 					<?php
+					$selected = '';
+					if ( ! array_key_exists( $item['price_id'], $prices ) ) {
+						$selected = 'selected="selected"';
+					}
+					?>
+					<option value="-1" disabled="disabled" <?php echo $selected; ?>>Price ID Not Found</option>
+					<?php
 						foreach ( $prices as $key => $price ) {
 							?><option <?php selected( $key, $item['price_id'], true ); ?> value="<?php echo $key; ?>"><?php echo $key . ' - ' . $price['name']; ?></option><?php
 						}

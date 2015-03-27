@@ -38,6 +38,10 @@ function edd_sl_reassign_license() {
 			data.price_id  = select.val();
 			data.license_id = select.data('id');
 			data.download_id = select.data('download');
+			if ( data.price_id == -1 ) {
+				alert( 'You must select a valid Price ID' );
+				return false;
+			}
 
 			jQuery.post(ajaxurl, data, function(response) {
 				select.removeAttr('disabled');
